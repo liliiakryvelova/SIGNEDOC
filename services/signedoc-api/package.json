@@ -1,0 +1,25 @@
+{
+  "name": "@signedoc/api",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "dist/signedoc-api/src/functions/*.js",
+  "scripts": { "build": "tsc -p tsconfig.json", "start": "npm run build && func start", "db:migrate": "node migrations/run.mjs", "test": "vitest run", "test:watch": "vitest" },
+  "dependencies": {
+    "@azure/functions": "^4.7.2",
+    "@azure/identity": "^4.7.0",
+    "@azure/storage-blob": "^12.27.0",
+    "@signedoc/shared": "*",
+    "bcryptjs": "^3.0.2",
+    "pdf-lib": "^1.17.1",
+    "pg": "^8.14.1",
+    "pino": "^9.6.0",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.10",
+    "@types/pg": "^8.11.11",
+    "typescript": "^5.8.3",
+    "vitest": "^3.1.1"
+  }
+}

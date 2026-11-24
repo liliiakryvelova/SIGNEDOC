@@ -1,0 +1,19 @@
+import { useState, type FormEvent } from 'react';
+import { Button, Card, Field, Input, MessageBar, MessageBarBody, Title2 } from '@fluentui/react-components';
+import { ArrowRightRegular, DocumentRegular } from '@fluentui/react-icons';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { useAuth } from '../app/AuthContext.js';
+
+export function LoginPage() {
+  const { user, login } = useAuth(); const navigate = useNavigate(); const [error, setError] = useState(''); const [busy, setBusy] = useState(false);
+  if (user) return <Navigate to="/" replace />;
+  const submit = async (event: FormEvent<HTMLFormElement>) => { event.preventDefault(); const data = new FormData(event.currentTarget); setError(''); setBusy(true); try { await login(String(data.get('email')), String(data.get('password'))); navigate('/'); } catch (reason) { setError(reason instanceof Error ? reason.message : 'Sign in failed.'); } finally { setBusy(false); } };
+  return <div className="auth-wrap"><Card className="auth-card" appearance="filled-alternative"><span className="auth-brand"><DocumentRegular /> SingEDoc</span><Title2>Welcome back</Title2><p>Sign in to manage your signing requests.</p><form onSubmit={(event) => void submit(event)}><Field label="Email" required><Input name="email" type="email" autoComplete="email" placeholder="you@example.org" required /></Field><Field label="Password" required hint="Use at least 12 characters for new accounts."><Input name="password" type="password" autoComplete="current-password" required /></Field>{error && <MessageBar intent="error"><MessageBarBody>{error}</MessageBarBody></MessageBar>}<Button type="submit" appearance="primary" icon={<ArrowRightRegular />} disabled={busy}>{busy ? 'Signing in…' : 'Sign in'}</Button></form><div className="auth-divider">New to SingEDoc?</div><Button as="a" href="/register" appearance="secondary">Create account</Button><p className="auth-note">Local preview uses demonstration data. No email will be sent.</p></Card></div>;
+}
+
+export function RegisterPage() {
+  const { user, register } = useAuth(); const navigate = useNavigate(); const [error, setError] = useState(''); const [busy, setBusy] = useState(false);
+  if (user) return <Navigate to="/" replace />;
+  const submit = async (event: FormEvent<HTMLFormElement>) => { event.preventDefault(); const data = new FormData(event.currentTarget); const password = String(data.get('password')); if (password !== String(data.get('confirmPassword'))) { setError('Passwords do not match.'); return; } setError(''); setBusy(true); try { await register({ name: String(data.get('name')), email: String(data.get('email')), password }); navigate('/'); } catch (reason) { setError(reason instanceof Error ? reason.message : 'Account creation failed.'); } finally { setBusy(false); } };
+  return <div className="auth-wrap"><Card className="auth-card" appearance="filled-alternative"><span className="auth-brand"><DocumentRegular /> SingEDoc</span><Title2>Create your account</Title2><p>Start organizing your signing requests.</p><form onSubmit={(event) => void submit(event)}><Field label="Full name" required><Input name="name" autoComplete="name" required /></Field><Field label="Email" required><Input name="email" type="email" autoComplete="email" required /></Field><Field label="Password" required hint="At least 12 characters."><Input name="password" type="password" autoComplete="new-password" minLength={12} required /></Field><Field label="Confirm password" required><Input name="confirmPassword" type="password" autoComplete="new-password" minLength={12} required /></Field>{error && <MessageBar intent="error"><MessageBarBody>{error}</MessageBarBody></MessageBar>}<Button type="submit" appearance="primary" disabled={busy}>{busy ? 'Creating account…' : 'Create account'}</Button></form><p className="auth-note"><Link to="/login">Already have an account? Sign in</Link></p></Card></div>;
+}

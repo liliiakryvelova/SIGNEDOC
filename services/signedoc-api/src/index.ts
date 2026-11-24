@@ -1,0 +1,15 @@
+import './functions/health.js';
+import './functions/register.js';
+import './functions/login.js';
+import './functions/currentUser.js';
+import './functions/listDocuments.js';
+import './functions/createDocument.js';
+import './functions/uploadDocumentContent.js';
+import './functions/createInvitation.js';
+import './functions/signingView.js';
+import './functions/signingDocument.js';
+import './functions/submitSignature.js';
+import './functions/documentDetails.js';
+import './functions/downloadDocument.js';
+import './functions/resendInvitation.js';
+import './functions/openapi.js';

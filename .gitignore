@@ -1,0 +1,13 @@
+.env
+.env.*
+!.env.example
+node_modules/
+dist/
+coverage/
+.vite/
+services/signedoc-api/local.settings.json
+services/signedoc-api/.func/
+data/
+*.tsbuildinfo
+.azure/.preview-temp/
+.DS_Store

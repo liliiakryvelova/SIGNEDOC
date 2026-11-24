@@ -1,0 +1,10 @@
+{
+  "name": "@signedoc/shared",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "exports": { "./types": "./dist/types/index.js", "./schemas": "./dist/schemas/index.js" },
+  "scripts": { "build": "tsc -p tsconfig.json", "test": "vitest run" },
+  "dependencies": { "zod": "^3.24.2" },
+  "devDependencies": { "typescript": "^5.8.3", "vitest": "^3.1.1" }
+}

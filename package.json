@@ -1,0 +1,23 @@
+{
+  "name": "signedoc",
+  "private": true,
+  "type": "module",
+  "workspaces": ["services/signedoc-api", "services/signedoc-web", "services/shared"],
+  "scripts": {
+    "build": "npm run build --workspace @signedoc/shared && npm run build --workspace @signedoc/api && npm run build --workspace @signedoc/web",
+    "test": "npm run test --workspace @signedoc/shared && npm run test --workspace @signedoc/api && npm run test --workspace @signedoc/web",
+    "test:api": "npm run test --workspace @signedoc/api",
+    "test:web": "npm run test --workspace @signedoc/web",
+    "db:migrate": "npm run db:migrate --workspace @signedoc/api",
+    "dev:web": "npm run dev --workspace @signedoc/web",
+    "dev:api": "npm run start --workspace @signedoc/api",
+    "format": "prettier --write .",
+    "lint": "eslint services"
+  },
+  "devDependencies": {
+    "eslint": "^9.22.0",
+    "prettier": "^3.5.3",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.27.0"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "node",
+    "AZURE_FUNCTIONS_ENVIRONMENT": "Development",
+    "NODE_ENV": "development",
+    "AZURE_STORAGE_CONNECTION_STRING": "UseDevelopmentStorage=true",
+    "DATABASE_URL": "postgresql://signedoc:local-only-change-me@localhost:5432/signedoc",
+    "JWT_SECRET": "local-only-secret-change-this-before-use-123456",
+    "JWT_ISSUER": "signedoc-local",
+    "JWT_AUDIENCE": "signedoc-web",
+    "WEB_ORIGIN": "http://localhost:5173",
+    "MAX_UPLOAD_BYTES": "10485760"
+  },
+  "Host": { "CORS": "http://localhost:5173", "CORSCredentials": false }
+}
